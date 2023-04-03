@@ -1,6 +1,13 @@
 {
   "index": "Introduzione",
-  "opzioni": "Opzioni",
+  "opzioni": {
+    "title": "Opzioni",
+    "type": "page"
+  },
+  "documentazione": {
+    "title": "Documentazione",
+    "type": "page"
+  },
   "about": {
     "title": "About",
     "type": "page"

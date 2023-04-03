@@ -1,0 +1,69 @@
+import VerticalTable from "../../../../../components/VerticalTable.tsx";
+
+export const nome = {
+  key: "Nome",
+  value: "Login con google",
+};
+export const scopo = {
+  key: "Scopo",
+  value: "Effettuare l'accesso utilizzando l'account google",
+};
+export const attori = { key: "Attori", value: "Cliente" };
+export const preCondizioni = {
+  key: "Pre-condizioni",
+  value:
+    "Il cliente deve avere un account google con il quale è già stato fatto l'accesso",
+};
+export const trigger = {
+  key: "Trigger",
+  value: (
+    <ol>
+      <li>
+        Pulsante "Accedi con google" all'interno del form di registrazione/login
+      </li>
+    </ol>
+  ),
+};
+
+export const descrizione = {
+  key: "Descrizione",
+  value: (
+    <ol>
+      <li>1. L'utente accede al pannello</li>
+    </ol>
+  ),
+};
+
+export const alternative = {
+  key: "Alternative",
+  value: (
+    <ol>
+      <li>
+        1a. Se l'utente non ha una sessione di google attiva viene richiesto il
+        login
+      </li>
+    </ol>
+  ),
+};
+
+export const postCondizioni = {
+  key: "Post-condizioni",
+  value: "L'utente ha effettuato l'accesso",
+};
+
+export const verticalTableProps = {
+  data: [
+    nome,
+    scopo,
+    attori,
+    preCondizioni,
+    trigger,
+    descrizione,
+    alternative,
+    postCondizioni,
+  ],
+};
+
+# Login con google
+
+<VerticalTable props={verticalTableProps}></VerticalTable>

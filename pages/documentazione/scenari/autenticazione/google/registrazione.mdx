@@ -1,0 +1,73 @@
+import VerticalTable from "../../../../../components/VerticalTable.tsx";
+
+export const nome = {
+  key: "Nome",
+  value: "Registrazione con google",
+};
+export const scopo = {
+  key: "Scopo",
+  value: "Effettuare l'accesso utilizzando l'account google",
+};
+export const attori = { key: "Attori", value: "Cliente" };
+export const preCondizioni = { key: "Pre-condizioni", value: "Il cliente deve avere un account google con il quale non è mai stato fatto l'accesso" };
+export const trigger = {
+  key: "Trigger",
+  value: (
+    <ol>
+      <li>
+        Pulsante "Accedi con google" all'interno del form di registrazione/login
+      </li>
+    </ol>
+  ),
+};
+
+export const descrizione = { key: "Descrizione", value: (
+    <ol>
+      <li>
+        1. L'utente visualizza un modale di google per consentire l'accesso
+      </li>
+      <li>
+        2. L'utente conferma l'accesso
+      </li>
+      <li>
+        3. Il sistema registra l'utente e gli invia una email di benvenuto
+      </li>
+      <li>
+        5. Il sistema passa al <u>setup dell'organizzazione</u>
+      </li>
+    </ol>
+
+) };
+
+export const alternative = {
+  key: "Alternative",
+  value: (
+    <ol>
+      <li>
+        2a. Se l'utente non conferma l'accesso il sistema restituisce un errore
+      </li>
+    </ol>
+  ),
+};
+
+export const postCondizioni = {
+  key: "Post-condizioni",
+  value: "L'utente è stato registrato in auth0",
+};
+
+export const verticalTableProps = {
+  data: [
+    nome,
+    scopo,
+    attori,
+    preCondizioni,
+    trigger,
+    descrizione,
+    alternative,
+    postCondizioni,
+  ],
+};
+
+# Registrazione con google
+
+<VerticalTable props={verticalTableProps}></VerticalTable>

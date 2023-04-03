@@ -1,0 +1,83 @@
+import VerticalTable from "../../../../../components/VerticalTable.tsx";
+
+export const nome = {
+  key: "Nome",
+  value: "Login",
+};
+export const scopo = {
+  key: "Scopo",
+  value: "Effettuare l'accesso al pannello di controllo",
+};
+export const attori = { key: "Attori", value: "Utente Registrato" };
+export const preCondizioni = {
+  key: "Pre-condizioni",
+  value: "L'utente si è registrato e ha verificato la mail",
+};
+export const trigger = {
+  key: "Trigger",
+  value: (
+    <ol>
+      <li>1. Pulsante "Accedi" all'interno della landing page</li>
+      <li>
+        2. Pulsante 'Hai già un account? Accedi' nel modale di registrazione
+      </li>
+    </ol>
+  ),
+};
+
+export const descrizione = {
+  key: "Descrizione",
+  value: (
+    <ol>
+      <li>
+        1. L'utente inserisce lo username e la password con la quale si è
+        registrato
+      </li>
+      <li>2. L'utente clicca il pulsante di conferma</li>
+      <li>3. Il sistema riconosce che le credenziali sono corrette</li>
+      <li>
+        4. Se è il primo accesso il sistema effettua il{" "}
+        <u>Setup dell'organizzazione</u>
+      </li>
+      <li>5. L'utente accede al pannello di controllo</li>
+    </ol>
+  ),
+};
+
+export const alternative = {
+  key: "Alternative",
+  value: (
+    <ol>
+      <li>
+        3a. Se le credenziali non sono corrette il sistema restituisce un
+        messaggio di errore
+      </li>
+    </ol>
+  ),
+};
+
+export const postCondizioni = {
+  key: "Post-condizioni",
+  value: "L'utente ha effettuato l'accesso al pannello",
+};
+
+export const verticalTableProps = {
+  data: [
+    nome,
+    scopo,
+    attori,
+    preCondizioni,
+    trigger,
+    descrizione,
+    alternative,
+    postCondizioni,
+  ],
+};
+
+# Login
+
+Dopo aver effettuato la registrazione con email e password, un utente può effettuare il login inserendo le proprie credenziali di accesso
+
+## Scenario
+
+<VerticalTable props={verticalTableProps}></VerticalTable>

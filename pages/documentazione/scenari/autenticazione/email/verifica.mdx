@@ -1,0 +1,79 @@
+import VerticalTable from "../../../../../components/VerticalTable.tsx";
+
+export const nome = {
+  key: "Nome",
+  value: "Verifica mail",
+};
+export const scopo = {
+  key: "Scopo",
+  value: "Verificare l'indirizzo email di un utente",
+};
+export const attori = { key: "Attori", value: "Utente" };
+export const preCondizioni = {
+  key: "Pre-condizioni",
+  value: "L'utente si è registrato con email e password",
+};
+export const trigger = {
+  key: "Trigger",
+  value: "Registrazione con email e password eseguita con successo",
+};
+
+export const descrizione = {
+  key: "Descrizione",
+  value: (
+    <ol>
+      <li>
+        1. Il sistema invia un'email di conferma all'indirizzo inserito in fase
+        di registrazione
+      </li>
+      <li>
+        2. L'utente accede alla propria casella mail e visualizza la mail di
+        conferma
+      </li>
+      <li>
+        3. L'utente clicca sul pulsante di conferma all'interno della mail
+      </li>
+      <li>
+        4. L'utente viene reindirizzato ad una pagina web che raccoglie la
+        conferma della mail
+      </li>
+      <li>
+        5. L'utente viene reindirizzato alla pagina di <u>login</u>
+      </li>
+    </ol>
+  ),
+};
+
+export const alternative = {
+  key: "Alternative",
+  value: (
+    <ol>
+      <li>
+        3a. Se la mail è già stata verificata la pagina web mostra un messaggio
+        di errore.
+      </li>
+    </ol>
+  ),
+};
+
+export const postCondizioni = {
+  key: "Post-condizioni",
+  value: "L'utente ha verificato la mail",
+};
+
+export const verticalTableProps = {
+  data: [
+    nome,
+    scopo,
+    attori,
+    preCondizioni,
+    trigger,
+    descrizione,
+    alternative,
+    postCondizioni,
+  ],
+};
+
+# Verifica mail
+
+<VerticalTable props={verticalTableProps}></VerticalTable>
