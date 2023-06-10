@@ -1,0 +1,140 @@
+`Università degli Studi di Milano`  
+` Corso di Editoria Digitale`  
+` Anno Accademico 2022/2023`  
+` Andrea Francesco Brioschi 923124`
+
+# ?? DaaS (Documentation as a Service) ??
+
+## Introduzione
+
+Una delle componenti fondamentali di un software è la documentazione: infatti, una documentazione completa permette di migliorare l'esperienza degli utenti finali e di migliorare l'efficienza nello sviluppo in team.
+
+Per gli utenti finali, una documentazione ben strutturata permette di apprendere più velocemente come utilizzare un software e come sfruttare le sue funzionalità, rendendo di conseguenza l'esperienza dell'utente più soddisfacente.
+
+Per gli sviluppatori invece, la documentazione è essenziale in particolare nel lavoro in team. Essa permette di avere chiari gli aspetti tecnici da tenere in considerazione nel caso di nuovi sviluppi, modifiche o correzione di errori.
+
+Negli ultimi anni, grazie alla forte diffusione di internet, l'approccio nella fruizione dei software è cambiato: i software tradizionali stanno infatti lasciando spazio al modello chiamato SaaS (Software as a Service) in cui i software vengono resi disponibili come servizi sul Web.
+
+Il modello SaaS ha innumerevoli vantaggi, fra i quali:
+
+- _Accessibilità:_ questo modello permette di usufruire di un servizio senza particolari requisiti sulla macchina client e senza necessità di istallazione di alcun software se non un browser compatibile.
+- _Disponibilità:_ un altro grosso vantaggio di questo modello è la disponibilità, infatti da qualsiasi dispositivo connesso a internet è possibile accedere al servizio.
+- _Sicurezza:_ essendo archiviati nel cloud non c'è pericolo di perdite di dati in seguito a malfunzionamenti delle macchine client.
+- _Aggiornamenti:_ il servizio viene aggiornato automaticamente senza che l'utente debba effettuare alcuna azione.
+
+Data la flessibilità di questo nuovo modello è necessario trovare una soluzione ugualmente flessibile per creare, aggiornare e rendere disponibile agli utenti la documentazione del software.
+
+## Obiettivi
+
+Una soluzione naturale per documentare i software basati sul modello SaaS è quella di avere un sito web dedicato, in modo tale da rendere la documentazione facilmente accessibile ovunque e sempre aggiornata.
+
+Nel processo di costruzione della documentazione, è fondamentale mantenere l'attenzione sul contenuto. Chi si occupa della scrittura della documentazione potrebbe non essere un programmatore, quindi è indispensabile utilizzare uno strumento che consenta di trasformare facilmente un semplice formato di testo in un sito web.
+
+Una volta generato il sito web a partire dal formato testuale, il passo successivo è mettere il progetto in produzione e renderlo accessibile online.
+
+Inoltre, considerando la natura dinamica della documentazione, risulta estremamente utile automatizzare le operazioni di costruzione e messa in produzione dell'applicazione in seguito alle modifiche.
+
+Lo strumento scelto è [Nextra](https://nextra.site/), un framework basato su [Next.js](https://nextjs.org/) che permette di generare siti web costruendo le pagine tramite files in formato MDX [^mdx].
+
+Per aggiornare il contenuto del sito in modo automatico verrà utilizzato il sistema di continuous delivery basato su [GitHub](https://github.com/), presente in modo nativo nella piattaforma [Vercel](https://vercel.com/) utilizzata per l'hosting.
+
+## Processo di produzione
+
+Il processo di produzione di un prodotto di questo tipo attraversa due fasi fondamentali: setup e sviluppo.
+
+### Setup
+
+Nella fase di setup è necessario:
+
+- Creare la struttura del progetto con le dipendenze necessarie per l'esecuzione
+- Caricare il progetto in una repository GitHub
+- Collegare la repository GitHub a Vercel
+- Effettuare build e deploy del codice presente su GitHub
+
+Per effettuare queste operazioni in un unico passaggio è possibile utilizzare la funzionalità di [Deploy Button](https://vercel.com/docs/integrations/deploy-button#) fornita da Vercel, che permette (tramite la generazione di uno specifico link) di avviare una semplice procedura guidata per eseguire tutti gli step di preparazione elencati in precedenza utilizzando un template.
+
+Il bottone seguente permette di avviare la progedura guidata utilizzando la repository pubblica con il [template base ufficiale di Nextra](https://github.com/shuding/nextra-docs-template):
+
+[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra-docs-template&showOptionalTeamCreation=false)
+
+#### Struttura base
+
+Una volta completata la fase di setup la repository su GitHub conterrà i seguenti file e cartelle:
+
+```
+├── LICENSE							//Licenza
+├── README.md
+├── components						//Componenti React
+│   ├── counters.module.css
+│   └── counters.tsx
+├── next-env.d.ts
+├── next.config.js					//Configurazione Next.Js
+├── package-lock.json
+├── package.json					//Definizione dipendenze progetto
+├── pages 							//Pagine di documentazione
+│   ├── _meta.json
+│   ├── about.mdx
+│   ├── advanced
+│   │   └── satori.mdx
+│   ├── advanced.mdx
+│   ├── another.mdx
+│   └── index.mdx
+├── public							//Directory di file serviti in modo statico
+├── pnpm-lock.yaml
+├── theme.config.tsx				//Configurazione del tema Nextra
+└── tsconfig.json					//Configurazione di typescript
+```
+
+La cartella `pages` è l'indice della documentazione, all'interno è possibile inserire sottocartelle e file in formato MDX che verranno tradotte automaticamente in pagine HTML e inserite all'interno del sistema di navigazione del sito web.
+
+All'interno della cartella `pages` e per ogni sua sottocartella è possibile inserire un file chiamato `_meta.json` con alcune opzioni di configurazione per le pagine come il titolo o il tema da utilizzare.
+
+### Sviluppo
+
+L'aggiornamento della documentazione a questo punto consiste nella modifica della repository remota presente sul servizio Web GitHub, per farlo sono disponibili due diverse strategie: la creazione di una repository locale collegata utilizzando Git o la modifica del repository remota tramite l'interfaccia di GitHub.
+
+In entrambi i casi, in seguito alle modifiche è possibile generare una pull request. Nel momento in cui viene effettuato il merge di una pull request nel branch `main`, il servizio Vercel: rileva le modifiche, costruisce una nuova versione aggiornata del sito web e la pubblica.
+
+## Gestione documentale
+
+Per gestire un prodotto di questo tipo bisogna partire con la definizione dei ruoli, in un'azienda che sviluppa software tipicamente il lavoro viene suddiviso in team. Prendiamo in considerazione due team: uno dedicato allo sviluppo e uno alla documentazione.
+
+Il team di sviluppo, nel momento in cui rilascia un aggiornamento, si fa carico di comunicare al team di documentazione le novità in maniera più dettagliata possibile. Quando il team di documentazione riceve le informazioni necessarie deve modificare il progetto aggiornando i contenuti presenti o inserendone di nuovi.
+
+Il manager del team di documentazione si occupa della revisione della documentazione scritta dal suo team e decide se può essere pubblicata o necessita di alcune modifiche.
+
+![modifiche](/images/modifiche.png)
+
+## Tecnologie adottate
+
+Le tecnologie principali adottate all'interno di questo progetto sono Nextra, GitHub e Vercel.
+
+### Nextra
+
+Nextra è il framework che permette di generare il sito web partendo dai file in formato MDX.
+
+### Github
+
+GitHub è la repository remota contenente la documentazione nella sua versione testuale.
+
+### Vercel
+
+Vercel è il sistema di hosting che grazie al suo sistema di continuous delivery integrato con GitHub permette di costruire e pubblicare il sito web in seguito alle modifiche della repository.
+
+Oltre alla versione in produzione, contenente la documentazione generata dall'ultimo commit nella repository, Vercel rende mantiene online una versione del sito web per ogni commit effettuato.
+
+In questo modo è possibile mantenere contemporaneamente più versioni della stessa documentazione online.
+
+## Conclusioni
+
+Gli obiettivi del progetto sono stati ottenuti con successo, in maniera totalmente gratuita e senza conoscenze di programmazione è possibile generare un sito web dinamico dedicato alla documentazione di un software.
+
+Grazie al sistema di costruzione di siti web reso disponibile dal framework Nextra e all'integrazione di GitHub con il servizio di Hosting Vercel è possibile avere un sito web sempre aggiornato i quali contenuti possono essere modificati agendo sul contenuto della repository.
+
+## Bibliografia e sitografia
+
+- Nextra: [https://nextra.site/](https://nextra.site/)
+- Nextjs: [https://nextjs.org/](https://nextjs.org/)
+- Vercel: [https://vercel.com/](https://vercel.com/)
+
+[^mdx]: Il formato MDX è una combinazione di Markdown e JSX che permette di inserire all'interno di pagine scritte in Markdown alcuni elementi di HTML e componenti React personalizzati. Questo rende possibile la costruzione molto rapida di contenuti completamente testuali ma anche l'integrazione con componenti React complessi per la costuzione di pagine con requisiti particolari.
