@@ -1,11 +1,14 @@
 {
-  "index": "Introduzione",
-  "opzioni": {
-    "title": "Opzioni",
+  "index": {
+    "title": "Introduzione",
+    "type": "page"
+  },
+  "manual": {
+    "title": "Manuale Utente",
     "type": "page"
   },
   "documentazione": {
-    "title": "Documentazione",
+    "title": "Documentazione Tecnica",
     "type": "page"
   },
   "about": {

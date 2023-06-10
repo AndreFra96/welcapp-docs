@@ -9,13 +9,12 @@ interface VerticalTableProps {
 }
 
 function VerticalTable({ props }: { props: VerticalTableProps }) {
-    return < Descriptions bordered>
+    return <Descriptions bordered>
         {
             props.data.map((item) =>
                 <Descriptions.Item span={4} label={item.key}>{item.value}</Descriptions.Item>)
         }
     </Descriptions>
-
 }
 
 export default VerticalTable;
