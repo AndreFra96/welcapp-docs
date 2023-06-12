@@ -1,6 +1,6 @@
 # Welcapp Docs
 
-This is a template for creating documentation with [Nextra](https://nextra.site).
+Documentazione per il software Welcapp.
 
 ## Local Development
 
