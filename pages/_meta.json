@@ -23,6 +23,6 @@
   },
   "relazione": {
     "title": "Relazione",
-    "type": "page"
+    "display": "hidden"
   }
 }
